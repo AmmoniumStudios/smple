@@ -1,6 +1,5 @@
 package org.ammonium.smple.sdk.api.model;
 
-import java.util.List;
 import java.util.UUID;
 import org.ammonium.smple.sdk.util.GsonProvider;
 
@@ -12,8 +11,7 @@ import org.ammonium.smple.sdk.util.GsonProvider;
  */
 public record User(
     UUID uniqueId,
-    String username,
-    List<Home> homes
+    String username
 ) {
 
     public static User fromString(String json) {
