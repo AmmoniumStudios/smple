@@ -8,9 +8,11 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.ammonium.smple.command.CmdLogsCommand;
-import org.ammonium.smple.command.DoasCommand;
+import org.ammonium.smple.command.misc.CmdHistoryCommand;
+import org.ammonium.smple.command.misc.DoasCommand;
 import org.ammonium.smple.command.ExampleCommand;
+import org.ammonium.smple.command.misc.SudoCommand;
+import org.ammonium.smple.command.workbench.*;
 import org.ammonium.smple.command.SudoCommand;
 import org.ammonium.smple.config.Config;
 import org.ammonium.smple.sdk.command.CommandManager;
@@ -31,6 +33,14 @@ public final class SmplePlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        
+        // final ETableCommand eTableCommand = new ETableCommand(this);
+        
+//        this.getServer().getPluginManager()
+//            .registerEvents(
+//                this
+//            );
+        
         ConfigManager.getInstance().initConfigs(this, Config.class);
 
         CommandManager.create(this)
@@ -38,7 +48,16 @@ public final class SmplePlugin extends JavaPlugin {
                 new ExampleCommand(),
                 new SudoCommand(this),
                 new DoasCommand(this),
-                new CmdLogsCommand(this)
+                new AnvilCommand(this),
+                new CartographyCommand(this),
+                new CraftCommand(this),
+                new EChestComand(this),
+                // eTableCommand,                       // borked
+                new GrindCommand(this),
+                new LoomCommand(this),
+                // new SmeltCommand(this),              // borked
+                new SmithCommand(this),
+                new StonecutterCommand(this)
             );
 
 

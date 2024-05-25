@@ -1,4 +1,4 @@
-package org.ammonium.smple.command;
+package org.ammonium.smple.command.misc;
 
 import org.ammonium.smple.SmplePlugin;
 import org.bukkit.Bukkit;
