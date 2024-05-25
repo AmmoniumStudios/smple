@@ -60,9 +60,9 @@ public final class ConfigManager implements AutoCloseable {
         }
     }
 
-    public void initConfigs(Plugin plugin, Class<?>... configs) {
+    public void initConfigs(Class<?>... configs) {
         for (Class<?> config : configs) {
-            initConfig(this.directory.resolve(plugin.getName()), config);
+            initConfig(this.directory, config);
         }
     }
 
