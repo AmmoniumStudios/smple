@@ -8,10 +8,11 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.ammonium.smple.command.misc.CmdLogsCommand;
+import org.ammonium.smple.command.misc.CmdHistoryCommand;
 import org.ammonium.smple.command.misc.DoasCommand;
 import org.ammonium.smple.command.ExampleCommand;
 import org.ammonium.smple.command.misc.SudoCommand;
+import org.ammonium.smple.command.workbench.AnvilCommand;
 import org.ammonium.smple.sdk.command.CommandManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,7 +35,7 @@ public final class SmplePlugin extends JavaPlugin {
                 new ExampleCommand(),
                 new SudoCommand(this),
                 new DoasCommand(this),
-                new CmdLogsCommand(this)
+                new AnvilCommand(this)
             );
 
 

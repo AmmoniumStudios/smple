@@ -6,11 +6,11 @@ import org.bukkit.entity.Player;
 import org.incendo.cloud.annotations.Argument;
 import org.incendo.cloud.annotations.Command;
 
-public class CmdLogsCommand {
+public class CmdHistoryCommand {
 
     private final SmplePlugin plugin;
 
-    public CmdLogsCommand(SmplePlugin plugin) {
+    public CmdHistoryCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
 

@@ -25,7 +25,7 @@ public class WhoIsCommand {
         @Argument("nickname")
         final String target
     ) {
-        String[] nicknames = NicknameHelper.getNickname(target);
+        // String[] nicknames = NicknameHelper.getNickname(target);
         
         // Check through nicknames
         
