@@ -12,8 +12,24 @@ import org.ammonium.smple.command.misc.CmdHistoryCommand;
 import org.ammonium.smple.command.misc.DoasCommand;
 import org.ammonium.smple.command.ExampleCommand;
 import org.ammonium.smple.command.misc.SudoCommand;
+import org.ammonium.smple.command.warps.BackCommand;
+import org.ammonium.smple.command.warps.RTPCommand;
+import org.ammonium.smple.command.warps.home.DelHomeCommand;
+import org.ammonium.smple.command.warps.home.HomeCommand;
+import org.ammonium.smple.command.warps.home.SetHomeCommand;
+import org.ammonium.smple.command.warps.pwarp.DelPWarpCommand;
+import org.ammonium.smple.command.warps.pwarp.PWarpCommand;
+import org.ammonium.smple.command.warps.pwarp.SetPWarpCommand;
+import org.ammonium.smple.command.warps.spawn.SetSpawnCommand;
+import org.ammonium.smple.command.warps.spawn.SpawnCommand;
+import org.ammonium.smple.command.warps.tp.TPAcceptCommand;
+import org.ammonium.smple.command.warps.tp.TPCommand;
+import org.ammonium.smple.command.warps.tp.TPDenyCommand;
+import org.ammonium.smple.command.warps.tp.TPHereCommand;
+import org.ammonium.smple.command.warps.warp.DelWarpCommand;
+import org.ammonium.smple.command.warps.warp.SetWarpCommand;
+import org.ammonium.smple.command.warps.warp.WarpCommand;
 import org.ammonium.smple.command.workbench.*;
-import org.ammonium.smple.command.SudoCommand;
 import org.ammonium.smple.command.moderation.BanCommand;
 import org.ammonium.smple.command.moderation.KickCommand;
 import org.ammonium.smple.command.moderation.MuteCommand;
@@ -57,11 +73,11 @@ public final class SmplePlugin extends JavaPlugin {
                 new ExampleCommand(),
                 new SudoCommand(this),
                 new DoasCommand(this),
-                new CmdLogsCommand(this),
+                new CmdHistoryCommand(this),
                 new BanCommand(punishmentService),
                 new MuteCommand(punishmentService),
                 new KickCommand(punishmentService),
-                new MuteCommand(punishmentService)
+                new MuteCommand(punishmentService),
                 new AnvilCommand(this),
                 new CartographyCommand(this),
                 new CraftCommand(this),
@@ -71,7 +87,24 @@ public final class SmplePlugin extends JavaPlugin {
                 new LoomCommand(this),
                 // new SmeltCommand(this),              // borked
                 new SmithCommand(this),
-                new StonecutterCommand(this)
+                new StonecutterCommand(this),
+                new BackCommand(this),
+                new RTPCommand(this),
+                new DelHomeCommand(this),
+                new HomeCommand(this),
+                new SetHomeCommand(this),
+                new DelPWarpCommand(this),
+                new PWarpCommand(this),
+                new SetPWarpCommand(this),
+                new SetSpawnCommand(this),
+                new SpawnCommand(this),
+                new TPAcceptCommand(this),
+                new TPCommand(this),
+                new TPDenyCommand(this),
+                new TPHereCommand(this),
+                new DelWarpCommand(this),
+                new SetWarpCommand(this),
+                new WarpCommand(this)
             );
 
         Bukkit.getScheduler().runTaskTimer(this, () -> {
