@@ -5,7 +5,9 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.ammonium.smple.command.DoasCommand;
 import org.ammonium.smple.command.ExampleCommand;
+import org.ammonium.smple.command.SudoCommand;
 import org.ammonium.smple.sdk.command.CommandManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -23,7 +25,9 @@ public final class SmplePlugin extends JavaPlugin {
     public void onEnable() {
         CommandManager.create(this)
             .withCommands(
-                new ExampleCommand()
+                new ExampleCommand(),
+                new SudoCommand(this),
+                new DoasCommand(this)
             );
 
         Bukkit.getScheduler().runTaskTimer(this, () -> {

@@ -380,9 +380,13 @@ If a rule id is specified, it will show the rule
 
 ### CMD: Punish
 
-- `smple.moderation.punish`
+- `smple.moderation.punish.run`
+- `smple.moderation.punish.nopunish`
+- `smple.moderation.punish.silent`
 
-Allows a user to be punished for breaking a rule. 
+run Allows a user to be punished for breaking a rule. 
+nopunish allows a user to not be punished
+silent allows a user to be punished silently
 Punishments are set in the config. 
 
 ### CMD: Punishments
