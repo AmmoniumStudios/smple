@@ -16,6 +16,7 @@ import org.ammonium.smple.command.misc.neofetch;
 import org.ammonium.smple.command.moderation.BanCommand;
 import org.ammonium.smple.command.moderation.KickCommand;
 import org.ammonium.smple.command.moderation.MuteCommand;
+import org.ammonium.smple.command.moderation.misc.PunishCommand;
 import org.ammonium.smple.command.moderation.misc.SpectateCommand;
 import org.ammonium.smple.command.warps.BackCommand;
 import org.ammonium.smple.command.warps.RTPCommand;
@@ -117,7 +118,8 @@ public final class SmplePlugin extends JavaPlugin {
                 new DelWarpCommand(this),
                 new SetWarpCommand(this),
                 new WarpCommand(this),
-                new SpectateCommand()
+                new SpectateCommand(),
+                new PunishCommand()
             );
 
         Bukkit.getScheduler().runTaskTimer(this, () -> {
