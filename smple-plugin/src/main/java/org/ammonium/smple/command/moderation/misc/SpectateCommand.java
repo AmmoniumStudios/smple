@@ -18,7 +18,7 @@ public class SpectateCommand {
         this.lastLocation = new HashMap<>();
     }
 
-    @Command("spectate|watch <player>")
+    @Command("spectate|watch <target>")
     @Permission("smple.moderation.spectate")
     @CommandDescription("Spectate a player")
     public void spectate(final Player player, @Argument("target") final Player target) {
