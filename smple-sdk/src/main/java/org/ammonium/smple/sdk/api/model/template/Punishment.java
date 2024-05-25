@@ -6,6 +6,10 @@ import org.ammonium.smple.sdk.util.GsonProvider;
 
 public interface Punishment {
 
+    static Punishment fromJson(String json) {
+        return GsonProvider.fromJson(json, Punishment.class);
+    }
+
     UUID id();
 
     Type getType();
@@ -21,10 +25,6 @@ public interface Punishment {
         KICK,
         MUTE,
         WARN
-    }
-
-    static Punishment fromJson(String json) {
-        return GsonProvider.fromJson(json, Punishment.class);
     }
 
 }

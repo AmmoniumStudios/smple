@@ -8,20 +8,19 @@ import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class DelPWarpCommand {
-    
+
     private SmplePlugin plugin;
-    
+
     public DelPWarpCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("pwarp del <name>")
     @Permission("smple.warps.pwarp.manage")
     @CommandDescription("Delete a pwarp")
     public void delPWarp(
         final Player player,
-        @Argument("name")
-        final String name
+        @Argument("name") final String name
     ) {
         // check if pwarp exists
         // if pwarp exists, check if player is owner

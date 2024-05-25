@@ -2,6 +2,7 @@ package org.ammonium.smple.command.moderation;
 
 import java.util.UUID;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.ammonium.smple.SmplePlugin;
 import org.ammonium.smple.sdk.SmpleSdk;
 import org.ammonium.smple.sdk.api.service.impl.PunishmentService;
 import org.ammonium.smple.sdk.plugin.PluginBootstrapper;
@@ -17,7 +18,7 @@ public class KickCommand {
 
     private final SmpleSdk sdk;
 
-    public KickCommand(PluginBootstrapper bootstrapper) {
+    public KickCommand(SmplePlugin bootstrapper) {
         this.sdk = bootstrapper.getSdk();
     }
 

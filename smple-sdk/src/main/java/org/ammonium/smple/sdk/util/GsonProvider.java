@@ -9,16 +9,16 @@ public final class GsonProvider {
         .setPrettyPrinting()
         .create();
 
+    private GsonProvider() {
+        // no-op
+    }
+
     public static <T> String toJson(T json) {
         return GSON.toJson(json);
     }
 
     public static <T> T fromJson(String json, Class<T> clazz) {
         return GSON.fromJson(json, clazz);
-    }
-
-    private GsonProvider() {
-        // no-op
     }
 
 }

@@ -8,13 +8,13 @@ import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class CartographyCommand {
-    
+
     private final SmplePlugin plugin;
-    
+
     public CartographyCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("cartography")
     @Permission("smple.workbench.cartography")
     @CommandDescription("Open a cartography table")
@@ -25,5 +25,5 @@ public class CartographyCommand {
             player.openCartographyTable(player.getLocation(), true);
         });
     }
-    
+
 }

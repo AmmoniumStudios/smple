@@ -7,13 +7,13 @@ import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class TPAcceptCommand {
-    
+
     private SmplePlugin plugin;
-    
+
     public TPAcceptCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("tpaccept")
     @Permission("smple.warps.tp.accept")
     @CommandDescription("Accept a teleport request")

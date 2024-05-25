@@ -6,7 +6,8 @@ import java.util.function.Consumer;
 public interface Config {
 
     default Consumer<WatchEvent<?>> onUpdate() {
-        return e -> { };
+        return e -> {
+        };
     }
 
 }

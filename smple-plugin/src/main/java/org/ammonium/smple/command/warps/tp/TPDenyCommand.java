@@ -7,13 +7,13 @@ import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class TPDenyCommand {
-    
+
     private SmplePlugin plugin;
-    
+
     public TPDenyCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("tpdeny")
     @Permission("smple.warps.tp.deny")
     @CommandDescription("Deny a teleport request")

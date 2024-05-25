@@ -2,6 +2,7 @@ package org.ammonium.smple.command.moderation;
 
 import java.time.Duration;
 import java.util.UUID;
+import org.ammonium.smple.SmplePlugin;
 import org.ammonium.smple.sdk.SmpleSdk;
 import org.ammonium.smple.sdk.api.service.impl.PunishmentService;
 import org.ammonium.smple.sdk.plugin.PluginBootstrapper;
@@ -18,7 +19,7 @@ public class BanCommand {
 
     private final SmpleSdk sdk;
 
-    public BanCommand(PluginBootstrapper bootstrapper) {
+    public BanCommand(SmplePlugin bootstrapper) {
         this.sdk = bootstrapper.getSdk();
     }
 

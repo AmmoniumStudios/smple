@@ -10,20 +10,19 @@ import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class SudoCommand {
-    
+
     private final SmplePlugin plugin;
-    
+
     public SudoCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("sudo <args>")
     @Permission("smple.misc.sudo.run")
     @CommandDescription("Run a command as console")
     public void sudo(
-            final Player player,
-            @Greedy @Argument("args")
-            final String args
+        final Player player,
+        @Greedy @Argument("args") final String args
     ) {
         Bukkit.getScheduler().runTask(
             plugin, () -> {

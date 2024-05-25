@@ -11,22 +11,20 @@ import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class DoasCommand {
-    
+
     private final SmplePlugin plugin;
-    
+
     public DoasCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("doas <target> <args>")
     @Permission("smple.misc.doas.run")
     @CommandDescription("Run a command as console")
     public void doas(
         final CommandSender sender,
-        @Argument("target")
-        final Player target,
-        @Greedy @Argument("args")
-        final String args
+        @Argument("target") final Player target,
+        @Greedy @Argument("args") final String args
     ) {
         if (target.isOnline()) {
             Bukkit.getScheduler().runTask(
@@ -38,6 +36,6 @@ public class DoasCommand {
             sender.sendMessage("Player %s is not online".formatted(target.getName()));
         }
     }
-    
-    
+
+
 }

@@ -8,13 +8,13 @@ import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class CraftCommand {
-    
+
     private final SmplePlugin plugin;
-    
+
     public CraftCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("craft")
     @Permission("smple.workbench.craft")
     @CommandDescription("Open a crafting table")

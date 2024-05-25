@@ -10,6 +10,15 @@ import org.ammonium.smple.sdk.api.service.impl.WarpService;
 public final class SmpleSdk {
 
     private static SmpleSdk instance;
+    private final UserService userService = new UserService();
+    private final HomeService homeService = new HomeService();
+    private final PlayerWarpService playerWarpService = new PlayerWarpService();
+    private final WarpService warpService = new WarpService();
+    private final PunishmentService punishmentService = new PunishmentService();
+    private final LogService logService = new LogService();
+    private SmpleSdk() {
+        SmpleSdk.instance = this;
+    }
 
     public static SmpleSdk get() {
         if (instance == null) {
@@ -17,13 +26,6 @@ public final class SmpleSdk {
         }
         return instance;
     }
-
-    private final UserService userService = new UserService();
-    private final HomeService homeService = new HomeService();
-    private final PlayerWarpService playerWarpService = new PlayerWarpService();
-    private final WarpService warpService = new WarpService();
-    private final PunishmentService punishmentService = new PunishmentService();
-    private final LogService logService = new LogService();
 
     public HomeService getHomeService() {
         return homeService;
@@ -47,10 +49,6 @@ public final class SmpleSdk {
 
     public LogService getLogService() {
         return logService;
-    }
-
-    private SmpleSdk() {
-        SmpleSdk.instance = this;
     }
 
 }

@@ -12,13 +12,13 @@ import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class ETableCommand implements Listener {
-    
+
     private final SmplePlugin plugin;
-    
+
     public ETableCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("etable")
     @Permission("smple.workbench.etable")
     @CommandDescription("Open an etable")
@@ -30,13 +30,13 @@ public class ETableCommand implements Listener {
             player.openEnchanting(player.getLocation(), true);
         });
     }
-    
+
     @EventHandler
-    public void onPreEnchantTest(PrepareItemEnchantEvent e){
+    public void onPreEnchantTest(PrepareItemEnchantEvent e) {
         InventoryView view = e.getView();
         view.setProperty(InventoryView.Property.ENCHANT_BUTTON1, 1);
         view.setProperty(InventoryView.Property.ENCHANT_BUTTON2, 15);
         view.setProperty(InventoryView.Property.ENCHANT_BUTTON3, 30);
-        
+
     }
 }

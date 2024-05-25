@@ -2,6 +2,7 @@ package org.ammonium.smple.command.moderation;
 
 import java.time.Duration;
 import java.util.UUID;
+import org.ammonium.smple.SmplePlugin;
 import org.ammonium.smple.sdk.SmpleSdk;
 import org.ammonium.smple.sdk.api.service.impl.PunishmentService;
 import org.ammonium.smple.sdk.plugin.PluginBootstrapper;
@@ -18,7 +19,7 @@ public class MuteCommand {
 
     private final SmpleSdk sdk;
 
-    public MuteCommand(PluginBootstrapper bootstrapper) {
+    public MuteCommand(SmplePlugin bootstrapper) {
         this.sdk = bootstrapper.getSdk();
     }
 

@@ -8,13 +8,13 @@ import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class StonecutterCommand {
-    
+
     private final SmplePlugin plugin;
-    
+
     public StonecutterCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("stonecutter")
     @Permission("smple.workbench.stonecutter")
     @CommandDescription("Open a stonecutter")

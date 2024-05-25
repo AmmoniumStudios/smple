@@ -13,16 +13,9 @@ public final class ConfigManager implements AutoCloseable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger("smple-sdk/config");
     private static ConfigManager instance;
-
-    public static ConfigManager getInstance() {
-        return instance;
-    }
-
     private final Map<Class<?>, ConfigHandler<?>> handlers = new ConcurrentHashMap<>();
-
     private final Path directory;
     private final Plugin plugin;
-
     public ConfigManager(final Plugin plugin) {
         this.plugin = plugin;
         this.directory = plugin.getDataFolder().toPath();
@@ -34,6 +27,9 @@ public final class ConfigManager implements AutoCloseable {
         ConfigManager.instance = this;
     }
 
+    public static ConfigManager getInstance() {
+        return instance;
+    }
 
     @Override
     public void close() {

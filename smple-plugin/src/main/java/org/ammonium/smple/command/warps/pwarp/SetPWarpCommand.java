@@ -8,20 +8,19 @@ import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class SetPWarpCommand {
-    
+
     private SmplePlugin plugin;
-    
+
     public SetPWarpCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("pwarp set <name>")
     @Permission("smple.warps.pwarp.manage")
     @CommandDescription("Set a pwarp")
     public void setPWarp(
         final Player player,
-        @Argument("name")
-        final String name
+        @Argument("name") final String name
     ) {
         // check if pwarp exists
         // if pwarp exists, check if player is owner

@@ -9,13 +9,13 @@ import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class SetSpawnCommand {
-    
+
     private SmplePlugin plugin;
-    
+
     public SetSpawnCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("setspawn")
     @Permission("smple.warps.spawn.set")
     @CommandDescription("Set the spawn location")
@@ -31,9 +31,9 @@ public class SetSpawnCommand {
             location.getBlockY(),
             location.getBlockZ()
         );
-        
+
         // TODO: set spawn with SDK
-        
+
         player.sendMessage("Spawn set");
     }
 }

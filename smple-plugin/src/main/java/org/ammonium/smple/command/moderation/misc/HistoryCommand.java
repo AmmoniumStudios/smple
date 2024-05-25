@@ -1,5 +1,6 @@
 package org.ammonium.smple.command.moderation.misc;
 
+import org.ammonium.smple.SmplePlugin;
 import org.ammonium.smple.sdk.SmpleSdk;
 import org.ammonium.smple.sdk.plugin.PluginBootstrapper;
 import org.bukkit.Bukkit;
@@ -12,7 +13,7 @@ public class HistoryCommand {
 
     private final SmpleSdk sdk;
 
-    public HistoryCommand(PluginBootstrapper bootstrapper) {
+    public HistoryCommand(SmplePlugin bootstrapper) {
         this.sdk = bootstrapper.getSdk();
     }
 

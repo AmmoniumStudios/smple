@@ -10,11 +10,11 @@ public final class Config {
     @Setting
     private String example = "Hello, World!";
 
-    public String getExample() {
-        return example;
-    }
-
     public static Config get() {
         return ConfigManager.getInstance().getConfig(Config.class);
+    }
+
+    public String getExample() {
+        return example;
     }
 }

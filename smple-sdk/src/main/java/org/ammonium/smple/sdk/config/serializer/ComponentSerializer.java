@@ -12,14 +12,13 @@ public class ComponentSerializer extends ScalarSerializer<Component> {
     private static final ComponentSerializer INSTANCE = new ComponentSerializer();
     private static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
 
-    public static ComponentSerializer get() {
-        return INSTANCE;
-    }
-
     private ComponentSerializer() {
         super(Component.class);
     }
 
+    public static ComponentSerializer get() {
+        return INSTANCE;
+    }
 
     @Override
     public Component deserialize(Type type, Object obj) throws SerializationException {

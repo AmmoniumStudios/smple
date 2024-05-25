@@ -1,7 +1,7 @@
 package org.ammonium.smple.command.misc;
 
+import org.ammonium.smple.SmplePlugin;
 import org.ammonium.smple.sdk.SmpleSdk;
-import org.ammonium.smple.sdk.plugin.PluginBootstrapper;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.incendo.cloud.annotations.Argument;
@@ -13,7 +13,7 @@ public class CmdHistoryCommand {
 
     private final SmpleSdk sdk;
 
-    public CmdHistoryCommand(PluginBootstrapper plugin) {
+    public CmdHistoryCommand(SmplePlugin plugin) {
         this.sdk = plugin.getSdk();
     }
 

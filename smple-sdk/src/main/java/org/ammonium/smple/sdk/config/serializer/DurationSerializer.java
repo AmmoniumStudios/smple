@@ -12,12 +12,12 @@ public class DurationSerializer extends ScalarSerializer<Duration> {
     private static final DurationSerializer INSTANCE = new DurationSerializer();
     private static final Pattern DURATION_PATTERN = Pattern.compile("(([1-9][0-9]+|[1-9])[dhms])");
 
-    public static DurationSerializer get() {
-        return INSTANCE;
-    }
-
     private DurationSerializer() {
         super(Duration.class);
+    }
+
+    public static DurationSerializer get() {
+        return INSTANCE;
     }
 
     @Override

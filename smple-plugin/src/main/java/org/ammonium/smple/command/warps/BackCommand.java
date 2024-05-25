@@ -8,13 +8,13 @@ import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class BackCommand {
-    
+
     private final SmplePlugin plugin;
-    
+
     public BackCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("back")
     @Permission("smple.warps.back")
     @CommandDescription("Teleport back to your previous location")
@@ -22,10 +22,10 @@ public class BackCommand {
         final Player player
     ) {
         player.sendMessage("This command is not yet implemented");
-        
+
         // get a players previous locations
         // pop the last location
-        
+
         WarpHelper.teleport(this.plugin, player,
             player.getLocation() // TODO: change this to location popped from stack
         );

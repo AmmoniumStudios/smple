@@ -8,13 +8,13 @@ import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class EChestComand {
-    
+
     private final SmplePlugin plugin;
-    
+
     public EChestComand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("echest")
     @Permission("smple.workbench.echest")
     @CommandDescription("Open an echest")

@@ -9,22 +9,22 @@ import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class SpawnCommand {
-    
+
     private SmplePlugin plugin;
-    
+
     public SpawnCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("spawn")
     @Permission("smple.warps.spawn.run")
     @CommandDescription("Teleport to spawn")
     public void spawn(
         final Player player
     ) {
-        
-            World world = player.getWorld();
-        
+
+        World world = player.getWorld();
+
         if (world != null) {
             WarpHelper.teleport(this.plugin, player,
                 world.getSpawnLocation()

@@ -1,4 +1,5 @@
 package org.ammonium.smple.command.workbench;
+
 import org.ammonium.smple.SmplePlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -12,13 +13,13 @@ import org.incendo.cloud.annotations.Permission;
 import java.util.Iterator;
 
 public class SmeltCommand {
-    
+
     private final SmplePlugin plugin;
-    
+
     public SmeltCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("smelt")
     @Permission("smple.workbench.smith")
     @CommandDescription("Open a smithing table")
@@ -36,6 +37,6 @@ public class SmeltCommand {
             break;
         }
         result.setAmount(item.getAmount());
-        
+
     }
 }

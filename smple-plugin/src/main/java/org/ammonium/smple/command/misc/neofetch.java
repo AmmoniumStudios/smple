@@ -8,13 +8,13 @@ import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class neofetch {
-    
+
     private final SmplePlugin plugin;
-    
+
     public neofetch(SmplePlugin plugin) {
         this.plugin = plugin;
     }
-    
+
     @Command("neofetch")
     @Permission("smple.misc.neofetch.run")
     @CommandDescription("Run a neofetch command")
@@ -31,7 +31,7 @@ public class neofetch {
               /_-''    ''-_\\ </blue>
             """
         ));
-        
+
         // Run neofetch command
     }
 }

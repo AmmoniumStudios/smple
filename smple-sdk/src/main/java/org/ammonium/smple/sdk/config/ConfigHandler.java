@@ -16,9 +16,8 @@ import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
 public final class ConfigHandler<T> implements AutoCloseable {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("smple-skd/config-handler");
-
     public static final WatchServiceListener FILE_WATCHER;
+    private static final Logger LOGGER = LoggerFactory.getLogger("smple-skd/config-handler");
 
     static {
         try {
