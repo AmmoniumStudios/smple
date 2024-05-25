@@ -11,7 +11,8 @@ import org.ammonium.smple.sdk.util.GsonProvider;
  */
 public record User(
     UUID uniqueId,
-    String username
+    String username,
+    String displayName
 ) {
 
     public static User fromString(String json) {
