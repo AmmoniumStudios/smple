@@ -8,6 +8,8 @@ import org.bukkit.entity.Player;
 import org.incendo.cloud.annotation.specifier.Greedy;
 import org.incendo.cloud.annotations.Argument;
 import org.incendo.cloud.annotations.Command;
+import org.incendo.cloud.annotations.CommandDescription;
+import org.incendo.cloud.annotations.Permission;
 
 public class KickCommand {
 
@@ -18,6 +20,8 @@ public class KickCommand {
     }
 
     @Command("kick <player> <reason>")
+    @Permission("smple.moderation.kick")
+    @CommandDescription("Kick a player")
     public void kick(
         final CommandSender sender,
         @Argument("player") final Player player,

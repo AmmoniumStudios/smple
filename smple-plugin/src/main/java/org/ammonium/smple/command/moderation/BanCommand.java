@@ -56,7 +56,11 @@ public class BanCommand {
 
     @Command("unban <target>")
     @Permission("smple.command.unban")
-    public void unban(final CommandSender sender, final String target) {
+    public void unban(
+        final CommandSender sender,
+        @Argument("target")
+        final String target
+    ) {
         final OfflinePlayer offlineTarget = Bukkit.getOfflinePlayerIfCached(target);
 
         final UUID senderId = sender instanceof Player

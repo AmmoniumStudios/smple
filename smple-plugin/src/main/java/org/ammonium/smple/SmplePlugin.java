@@ -12,6 +12,7 @@ import org.ammonium.smple.command.misc.CmdHistoryCommand;
 import org.ammonium.smple.command.misc.DoasCommand;
 import org.ammonium.smple.command.ExampleCommand;
 import org.ammonium.smple.command.misc.SudoCommand;
+import org.ammonium.smple.command.misc.neofetch;
 import org.ammonium.smple.command.warps.BackCommand;
 import org.ammonium.smple.command.warps.RTPCommand;
 import org.ammonium.smple.command.warps.home.DelHomeCommand;
@@ -74,13 +75,13 @@ public final class SmplePlugin extends JavaPlugin {
         CommandManager.create(this)
             .withCommands(
                 new ExampleCommand(),
+                new neofetch(this),
                 new SudoCommand(this),
                 new DoasCommand(this),
                 new CmdHistoryCommand(this),
                 new BanCommand(punishmentService),
                 new MuteCommand(punishmentService),
                 new KickCommand(punishmentService),
-                new MuteCommand(punishmentService),
                 new AnvilCommand(this),
                 new CartographyCommand(this),
                 new CraftCommand(this),

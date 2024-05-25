@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.incendo.cloud.annotation.specifier.Greedy;
 import org.incendo.cloud.annotations.Argument;
 import org.incendo.cloud.annotations.Command;
+import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class WarnCommand {
@@ -19,7 +20,8 @@ public class WarnCommand {
     }
 
     @Command("warn <target> <reason>")
-    @Permission("smple.moderation.warn.run")
+    @Permission("smple.moderation.warn")
+    @CommandDescription("Warn a player")
     public void warn(
         final CommandSender sender,
         @Argument("target") final String target,

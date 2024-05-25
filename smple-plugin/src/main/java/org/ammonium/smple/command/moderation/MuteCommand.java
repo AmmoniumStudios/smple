@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.incendo.cloud.annotation.specifier.Greedy;
 import org.incendo.cloud.annotations.Argument;
 import org.incendo.cloud.annotations.Command;
+import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
 
 public class MuteCommand {
@@ -20,12 +21,12 @@ public class MuteCommand {
     }
 
     @Command("mute <target> <duration> <reason>")
-    @Permission("smple.moderation.mute.run")
+    @Permission("smple.moderation.mute")
     public void mute(
         final CommandSender sender,
         @Argument("target") final String target,
         @Argument("duration") final Duration duration,
-        @Argument("reason") @Greedy final String reason
+        @Greedy @Argument("reason") final String reason
     ) {
         final UUID senderId = sender instanceof Player
             ? ((Player) sender).getUniqueId()
@@ -52,6 +53,9 @@ public class MuteCommand {
 
     }
 
+    @Command("unmute <target>")
+    @Permission("smple.moderation.unmute")
+    @CommandDescription("Unmute a player")
     public void unmute(
         final CommandSender sender,
         @Argument("target") final String target

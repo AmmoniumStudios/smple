@@ -2,6 +2,7 @@ package org.ammonium.smple.command.warps.pwarp;
 
 import org.ammonium.smple.SmplePlugin;
 import org.bukkit.entity.Player;
+import org.incendo.cloud.annotations.Argument;
 import org.incendo.cloud.annotations.Command;
 import org.incendo.cloud.annotations.CommandDescription;
 import org.incendo.cloud.annotations.Permission;
@@ -19,6 +20,7 @@ public class DelPWarpCommand {
     @CommandDescription("Delete a pwarp")
     public void delPWarp(
         final Player player,
+        @Argument("name")
         final String name
     ) {
         // check if pwarp exists
