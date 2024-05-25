@@ -13,7 +13,10 @@ import org.ammonium.smple.command.misc.DoasCommand;
 import org.ammonium.smple.command.ExampleCommand;
 import org.ammonium.smple.command.misc.SudoCommand;
 import org.ammonium.smple.command.workbench.*;
+import org.ammonium.smple.command.SudoCommand;
+import org.ammonium.smple.config.Config;
 import org.ammonium.smple.sdk.command.CommandManager;
+import org.ammonium.smple.sdk.config.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -38,7 +41,8 @@ public final class SmplePlugin extends JavaPlugin {
 //                this
 //            );
         
-        
+        ConfigManager.getInstance().initConfigs(this, Config.class);
+
         CommandManager.create(this)
             .withCommands(
                 new ExampleCommand(),

@@ -6,5 +6,6 @@ dependencies {
     compileOnly(libs.paper)
     api(libs.cloud)
     api(libs.cloud.annotations)
+    api(libs.configurate)
 }
 
