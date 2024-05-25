@@ -2,7 +2,9 @@ package org.ammonium.smple.command.moderation;
 
 import java.time.Duration;
 import java.util.UUID;
+import org.ammonium.smple.sdk.SmpleSdk;
 import org.ammonium.smple.sdk.api.service.impl.PunishmentService;
+import org.ammonium.smple.sdk.plugin.PluginBootstrapper;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -14,10 +16,10 @@ import org.incendo.cloud.annotations.Permission;
 
 public class MuteCommand {
 
-    private final PunishmentService punishmentService;
+    private final SmpleSdk sdk;
 
-    public MuteCommand(PunishmentService punishmentService) {
-        this.punishmentService = punishmentService;
+    public MuteCommand(PluginBootstrapper bootstrapper) {
+        this.sdk = bootstrapper.getSdk();
     }
 
     @Command("mute <target> <duration> <reason>")
@@ -38,18 +40,19 @@ public class MuteCommand {
             return;
         }
 
-        punishmentService.mute(
-            offlinePlayer.getUniqueId(),
-            senderId,
-            reason,
-            duration
-        ).thenAccept(success -> {
-            if (success) {
-                sender.sendMessage("Player muted.");
-            } else {
-                sender.sendMessage("Failed to mute player.");
-            }
-        });
+        this.sdk.getPunishmentService()
+            .mute(
+                offlinePlayer.getUniqueId(),
+                senderId,
+                reason,
+                duration
+            ).thenAccept(success -> {
+                if (success) {
+                    sender.sendMessage("Player muted.");
+                } else {
+                    sender.sendMessage("Failed to mute player.");
+                }
+            });
 
     }
 
@@ -70,18 +73,18 @@ public class MuteCommand {
             return;
         }
 
-        punishmentService.unmute(
-            offlinePlayer.getUniqueId(),
-            senderId
-        ).thenAccept(success -> {
-            if (success) {
-                sender.sendMessage("Player unmuted.");
-            } else {
-                sender.sendMessage("Failed to unmute player.");
-            }
-        });
+        this.sdk.getPunishmentService()
+            .unmute(
+                offlinePlayer.getUniqueId(),
+                senderId
+            ).thenAccept(success -> {
+                if (success) {
+                    sender.sendMessage("Player unmuted.");
+                } else {
+                    sender.sendMessage("Failed to unmute player.");
+                }
+            });
     }
-
 
 
 }

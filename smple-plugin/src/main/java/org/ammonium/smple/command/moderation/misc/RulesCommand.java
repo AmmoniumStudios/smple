@@ -18,7 +18,7 @@ public class RulesCommand {
     @Command("rule <rule>")
     @Permission("smple.moderation.rules")
     @CommandDescription("Display a specific rule")
-    public void rules(final CommandSender sender, @Argument("rule") String ruleId) {
+    public void rules(final CommandSender sender, @Argument("rule") String rule) {
         // Display the specified rule
     }
 

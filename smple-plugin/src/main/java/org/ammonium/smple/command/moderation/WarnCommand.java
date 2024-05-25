@@ -1,7 +1,9 @@
 package org.ammonium.smple.command.moderation;
 
 import java.util.UUID;
+import org.ammonium.smple.sdk.SmpleSdk;
 import org.ammonium.smple.sdk.api.service.impl.PunishmentService;
+import org.ammonium.smple.sdk.plugin.PluginBootstrapper;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -13,10 +15,10 @@ import org.incendo.cloud.annotations.Permission;
 
 public class WarnCommand {
 
-    private final PunishmentService punishmentService;
+    private final SmpleSdk sdk;
 
-    public WarnCommand(PunishmentService punishmentService) {
-        this.punishmentService = punishmentService;
+    public WarnCommand(PluginBootstrapper bootstrapper) {
+        this.sdk = bootstrapper.getSdk();
     }
 
     @Command("warn <target> <reason>")
@@ -37,17 +39,18 @@ public class WarnCommand {
             return;
         }
 
-        punishmentService.warn(
-            offlinePlayer.getUniqueId(),
-            senderId,
-            reason
-        ).thenAccept(success -> {
-            if (success) {
-                sender.sendMessage("Player warned.");
-            } else {
-                sender.sendMessage("Failed to warn player.");
-            }
-        });
+        this.sdk.getPunishmentService()
+            .warn(
+                offlinePlayer.getUniqueId(),
+                senderId,
+                reason
+            ).thenAccept(success -> {
+                if (success) {
+                    sender.sendMessage("Player warned.");
+                } else {
+                    sender.sendMessage("Failed to warn player.");
+                }
+            });
     }
 
 }

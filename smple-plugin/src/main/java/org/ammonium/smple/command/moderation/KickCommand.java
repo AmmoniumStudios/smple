@@ -2,7 +2,9 @@ package org.ammonium.smple.command.moderation;
 
 import java.util.UUID;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.ammonium.smple.sdk.SmpleSdk;
 import org.ammonium.smple.sdk.api.service.impl.PunishmentService;
+import org.ammonium.smple.sdk.plugin.PluginBootstrapper;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.incendo.cloud.annotation.specifier.Greedy;
@@ -13,10 +15,10 @@ import org.incendo.cloud.annotations.Permission;
 
 public class KickCommand {
 
-    private final PunishmentService punishmentService;
+    private final SmpleSdk sdk;
 
-    public KickCommand(PunishmentService punishmentService) {
-        this.punishmentService = punishmentService;
+    public KickCommand(PluginBootstrapper bootstrapper) {
+        this.sdk = bootstrapper.getSdk();
     }
 
     @Command("kick <player> <reason>")
@@ -32,14 +34,16 @@ public class KickCommand {
             : PunishmentService.CONSOLE_ID;
 
 
-        punishmentService.kick(player.getUniqueId(), senderId, reason).thenAccept(success -> {
-            if (success) {
-                sender.sendMessage("Player kicked.");
-                player.kick(MiniMessage.miniMessage().deserialize(reason));
-            } else {
-                sender.sendMessage("Failed to kick player.");
-            }
-        });
+        this.sdk.getPunishmentService()
+            .kick(player.getUniqueId(), senderId, reason)
+            .thenAccept(success -> {
+                if (success) {
+                    sender.sendMessage("Player kicked.");
+                    player.kick(MiniMessage.miniMessage().deserialize(reason));
+                } else {
+                    sender.sendMessage("Failed to kick player.");
+                }
+            });
     }
 
 }

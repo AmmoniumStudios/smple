@@ -9,12 +9,12 @@ import org.incendo.cloud.annotations.Permission;
 
 public class PunishCommand {
 
-    @Command("punish|p <player> <violation> [silent]")
+    @Command("punish|p <target> <violation> [silent]")
     @Permission("smple.moderation.punish.run")
     @CommandDescription("Punish a player for a violation")
     public void punish(
         final Player player,
-        @Argument("player") final String target,
+        @Argument("target") final String target,
         @Argument("violation") int violationId,
         @Argument("silent") @Default("false") boolean silent
     ) {

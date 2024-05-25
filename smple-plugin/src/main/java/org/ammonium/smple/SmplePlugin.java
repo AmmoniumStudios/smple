@@ -1,14 +1,5 @@
 package org.ammonium.smple;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.ammonium.smple.command.ExampleCommand;
 import org.ammonium.smple.command.misc.CmdHistoryCommand;
 import org.ammonium.smple.command.misc.DoasCommand;
 import org.ammonium.smple.command.misc.SudoCommand;
@@ -16,6 +7,7 @@ import org.ammonium.smple.command.misc.neofetch;
 import org.ammonium.smple.command.moderation.BanCommand;
 import org.ammonium.smple.command.moderation.KickCommand;
 import org.ammonium.smple.command.moderation.MuteCommand;
+import org.ammonium.smple.command.moderation.WarnCommand;
 import org.ammonium.smple.command.moderation.misc.HistoryCommand;
 import org.ammonium.smple.command.moderation.misc.PunishCommand;
 import org.ammonium.smple.command.moderation.misc.RulesCommand;
@@ -47,52 +39,43 @@ import org.ammonium.smple.command.workbench.SmithCommand;
 import org.ammonium.smple.command.workbench.StonecutterCommand;
 import org.ammonium.smple.config.Config;
 import org.ammonium.smple.listener.PunishmentListener;
-import org.ammonium.smple.sdk.api.service.impl.PunishmentService;
 import org.ammonium.smple.sdk.command.CommandManager;
 import org.ammonium.smple.sdk.config.ConfigManager;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.ammonium.smple.sdk.plugin.PluginBootstrapper;
 
-public final class SmplePlugin extends JavaPlugin {
-
-    private final MiniMessage miniMessage = MiniMessage.miniMessage();
-
-    public final Map<UUID, String> commandLogs = new HashMap<>();
-
-    private ConfigManager configManager;
-
-    private PunishmentService punishmentService;
+public final class SmplePlugin extends PluginBootstrapper {
 
     @Override
-    public void onLoad() {
-        this.punishmentService = new PunishmentService();
-        this.configManager = new ConfigManager(this);
+    public void load() {
+        ConfigManager.getInstance().initConfigs(
+            Config.class
+        );
     }
 
     @Override
-    public void onEnable() {
+    public void enable() {
+        setupListeners(
+            new PunishmentListener(this)
+        );
 
-        // final ETableCommand eTableCommand = new ETableCommand(this);
+        setupCommands();
+    }
 
-//        this.getServer().getPluginManager()
-//            .registerEvents(
-//                this
-//            );
+    @Override
+    public void disable() {
 
-        this.configManager.initConfigs(Config.class);
+    }
 
-        getServer().getPluginManager().registerEvents(new PunishmentListener(punishmentService), this);
-
+    private void setupCommands() {
         CommandManager.create(this)
             .withCommands(
-                new ExampleCommand(),
                 new neofetch(this),
                 new SudoCommand(this),
                 new DoasCommand(this),
                 new CmdHistoryCommand(this),
-                new BanCommand(punishmentService),
-                new MuteCommand(punishmentService),
-                new KickCommand(punishmentService),
+                new BanCommand(this),
+                new MuteCommand(this),
+                new KickCommand(this),
                 new AnvilCommand(this),
                 new CartographyCommand(this),
                 new CraftCommand(this),
@@ -123,23 +106,9 @@ public final class SmplePlugin extends JavaPlugin {
                 new SpectateCommand(),
                 new PunishCommand(),
                 new RulesCommand(),
-                new HistoryCommand(punishmentService)
+                new HistoryCommand(this),
+                new WarnCommand(this)
             );
-
-        Bukkit.getScheduler().runTaskTimer(this, () -> {
-            Bukkit.broadcast(
-                Component.text("Hello!")
-                    .decorate(TextDecoration.BOLD, TextDecoration.ITALIC)
-                    .color(NamedTextColor.AQUA)
-                    .clickEvent(ClickEvent.clickEvent(
-                        ClickEvent.Action.RUN_COMMAND, "/example")),
-                "smple.example");
-
-        }, 20, 20);
     }
 
-    @Override
-    public void onDisable() {
-
-    }
 }

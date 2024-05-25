@@ -1,6 +1,7 @@
 package org.ammonium.smple.command.moderation.misc;
 
-import org.ammonium.smple.sdk.api.service.impl.PunishmentService;
+import org.ammonium.smple.sdk.SmpleSdk;
+import org.ammonium.smple.sdk.plugin.PluginBootstrapper;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -9,10 +10,10 @@ import org.incendo.cloud.annotations.Command;
 
 public class HistoryCommand {
 
-    private final PunishmentService punishmentService;
+    private final SmpleSdk sdk;
 
-    public HistoryCommand(PunishmentService punishmentService) {
-        this.punishmentService = punishmentService;
+    public HistoryCommand(PluginBootstrapper bootstrapper) {
+        this.sdk = bootstrapper.getSdk();
     }
 
     @Command("history|hist|punishments <player> ")
@@ -28,9 +29,11 @@ public class HistoryCommand {
             return;
         }
 
-        this.punishmentService.getHistory(offlinePlayer.getUniqueId()).thenAccept(punishments -> {
-            // Build message
-        });
+        this.sdk.getPunishmentService()
+            .getHistory(offlinePlayer.getUniqueId())
+            .thenAccept(punishments -> {
+                // Build message
+            });
     }
 
     @Command("history|hist|punishments remove <player> <id> ")
