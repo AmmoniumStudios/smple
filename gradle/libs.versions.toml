@@ -5,12 +5,12 @@
 paper = "1.20.6-R0.1-SNAPSHOT"
 cloud = "2.0.0-beta.7"
 cloud-annotations = "2.0.0-beta.1"
-caffeine = "3.1.8"
+configurate = "4.1.2"
 
 
 [libraries]
 paper = { module = "io.papermc.paper:paper-api", version.ref = "paper" }
 cloud = { module = "org.incendo:cloud-paper", version.ref = "cloud" }
 cloud-annotations = { module = "org.incendo:cloud-annotations", version.ref = "cloud-annotations" }
-caffeine = { module = "com.github.ben-manes.caffeine:caffeine", version.ref = "caffeine" }
+configurate = { module = "org.spongepowered:configurate-yaml", version.ref = "configurate" }
 

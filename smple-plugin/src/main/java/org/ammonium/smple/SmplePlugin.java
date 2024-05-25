@@ -12,7 +12,9 @@ import org.ammonium.smple.command.CmdLogsCommand;
 import org.ammonium.smple.command.DoasCommand;
 import org.ammonium.smple.command.ExampleCommand;
 import org.ammonium.smple.command.SudoCommand;
+import org.ammonium.smple.config.Config;
 import org.ammonium.smple.sdk.command.CommandManager;
+import org.ammonium.smple.sdk.config.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -29,6 +31,8 @@ public final class SmplePlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        ConfigManager.getInstance().initConfigs(this, Config.class);
+
         CommandManager.create(this)
             .withCommands(
                 new ExampleCommand(),
@@ -36,7 +40,6 @@ public final class SmplePlugin extends JavaPlugin {
                 new DoasCommand(this),
                 new CmdLogsCommand(this)
             );
-
 
 
         Bukkit.getScheduler().runTaskTimer(this, () -> {
