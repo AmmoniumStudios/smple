@@ -1,4 +1,4 @@
-package org.ammonium.smple.command;
+package org.ammonium.smple.command.misc;
 
 import org.ammonium.smple.SmplePlugin;
 import org.bukkit.Bukkit;
@@ -19,7 +19,7 @@ public class DoasCommand {
     }
     
     @Command("doas <target> <args>")
-    @Permission("smple.misc.sudo.run")
+    @Permission("smple.misc.doas.run")
     @CommandDescription("Run a command as console")
     public void doas(
         final CommandSender sender,

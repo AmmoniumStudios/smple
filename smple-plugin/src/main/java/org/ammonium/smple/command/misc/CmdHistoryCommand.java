@@ -1,4 +1,4 @@
-package org.ammonium.smple.command;
+package org.ammonium.smple.command.misc;
 
 import org.ammonium.smple.SmplePlugin;
 import org.bukkit.command.CommandSender;
@@ -6,11 +6,11 @@ import org.bukkit.entity.Player;
 import org.incendo.cloud.annotations.Argument;
 import org.incendo.cloud.annotations.Command;
 
-public class CmdLogsCommand {
+public class CmdHistoryCommand {
 
     private final SmplePlugin plugin;
 
-    public CmdLogsCommand(SmplePlugin plugin) {
+    public CmdHistoryCommand(SmplePlugin plugin) {
         this.plugin = plugin;
     }
 

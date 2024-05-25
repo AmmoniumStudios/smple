@@ -8,9 +8,11 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.ammonium.smple.command.CmdLogsCommand;
-import org.ammonium.smple.command.DoasCommand;
+import org.ammonium.smple.command.misc.CmdHistoryCommand;
+import org.ammonium.smple.command.misc.DoasCommand;
 import org.ammonium.smple.command.ExampleCommand;
+import org.ammonium.smple.command.misc.SudoCommand;
+import org.ammonium.smple.command.workbench.*;
 import org.ammonium.smple.command.SudoCommand;
 import org.ammonium.smple.command.moderation.BanCommand;
 import org.ammonium.smple.command.moderation.KickCommand;
@@ -38,6 +40,14 @@ public final class SmplePlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        
+        // final ETableCommand eTableCommand = new ETableCommand(this);
+        
+//        this.getServer().getPluginManager()
+//            .registerEvents(
+//                this
+//            );
+        
         ConfigManager.getInstance().initConfigs(this, Config.class);
 
         getServer().getPluginManager().registerEvents(new PunishmentListener(punishmentService), this);
@@ -52,6 +62,16 @@ public final class SmplePlugin extends JavaPlugin {
                 new MuteCommand(punishmentService),
                 new KickCommand(punishmentService),
                 new MuteCommand(punishmentService)
+                new AnvilCommand(this),
+                new CartographyCommand(this),
+                new CraftCommand(this),
+                new EChestComand(this),
+                // eTableCommand,                       // borked
+                new GrindCommand(this),
+                new LoomCommand(this),
+                // new SmeltCommand(this),              // borked
+                new SmithCommand(this),
+                new StonecutterCommand(this)
             );
 
         Bukkit.getScheduler().runTaskTimer(this, () -> {

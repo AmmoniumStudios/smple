@@ -1,6 +1,8 @@
 # smple
 
 SMPle (pronounced: simple) is a suite of plugins aimed to enhance the vanilla experience. 
+We believe in providing a simple-to-use one-stop no-bs solution for all your server needs.
+We hope to create a plugin that has all the features you need, without any of the bloat you don't.
 
 
 ## Commands
@@ -18,7 +20,6 @@ The command is structured
 - [`/whois [displayname:string]`](#cmd-whois)
 - [`/nickname set <displayname:string>`](#cmd-nickname)
 - [`/nickname remove [username:string]`](#cmd-nickname)
-- [`/nickname edit <username:string> <displayname:string>`](#cmd-nickname)
 - [`/nickname history <username:string`](#cmd-nickname)
 - [`/pweather [weather|type]`](#cmd-pweather)
 - [`/ptime [tick:int]`](#cmd-ptime)
