@@ -1,10 +1,14 @@
 package org.ammonium.smple;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.ammonium.smple.command.CmdLogsCommand;
 import org.ammonium.smple.command.DoasCommand;
 import org.ammonium.smple.command.ExampleCommand;
 import org.ammonium.smple.command.SudoCommand;
@@ -15,6 +19,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class SmplePlugin extends JavaPlugin {
 
     private final MiniMessage miniMessage = MiniMessage.miniMessage();
+
+    public final Map<UUID, String> commandLogs = new HashMap<>();
 
     @Override
     public void onLoad() {
@@ -27,8 +33,11 @@ public final class SmplePlugin extends JavaPlugin {
             .withCommands(
                 new ExampleCommand(),
                 new SudoCommand(this),
-                new DoasCommand(this)
+                new DoasCommand(this),
+                new CmdLogsCommand(this)
             );
+
+
 
         Bukkit.getScheduler().runTaskTimer(this, () -> {
             Bukkit.broadcast(
