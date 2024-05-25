@@ -47,11 +47,14 @@ public final class SmplePlugin extends JavaPlugin {
 
     public final Map<UUID, String> commandLogs = new HashMap<>();
 
+    private ConfigManager configManager;
+
     private PunishmentService punishmentService;
 
     @Override
     public void onLoad() {
         this.punishmentService = new PunishmentService();
+        this.configManager = new ConfigManager(this);
     }
 
     @Override
@@ -64,7 +67,7 @@ public final class SmplePlugin extends JavaPlugin {
 //                this
 //            );
         
-        ConfigManager.getInstance().initConfigs(this, Config.class);
+        this.configManager.initConfigs(this, Config.class);
 
         getServer().getPluginManager().registerEvents(new PunishmentListener(punishmentService), this);
 

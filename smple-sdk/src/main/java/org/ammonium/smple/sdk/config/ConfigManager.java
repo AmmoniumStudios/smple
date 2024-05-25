@@ -23,7 +23,7 @@ public final class ConfigManager implements AutoCloseable {
     private final Path directory;
     private final Plugin plugin;
 
-    private ConfigManager(final Plugin plugin) {
+    public ConfigManager(final Plugin plugin) {
         this.plugin = plugin;
         this.directory = plugin.getDataFolder().toPath();
 
