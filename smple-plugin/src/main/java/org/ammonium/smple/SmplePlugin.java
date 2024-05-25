@@ -8,11 +8,14 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.ammonium.smple.command.ExampleCommand;
 import org.ammonium.smple.command.misc.CmdHistoryCommand;
 import org.ammonium.smple.command.misc.DoasCommand;
-import org.ammonium.smple.command.ExampleCommand;
 import org.ammonium.smple.command.misc.SudoCommand;
 import org.ammonium.smple.command.misc.neofetch;
+import org.ammonium.smple.command.moderation.BanCommand;
+import org.ammonium.smple.command.moderation.KickCommand;
+import org.ammonium.smple.command.moderation.MuteCommand;
 import org.ammonium.smple.command.warps.BackCommand;
 import org.ammonium.smple.command.warps.RTPCommand;
 import org.ammonium.smple.command.warps.home.DelHomeCommand;
@@ -30,10 +33,14 @@ import org.ammonium.smple.command.warps.tp.TPHereCommand;
 import org.ammonium.smple.command.warps.warp.DelWarpCommand;
 import org.ammonium.smple.command.warps.warp.SetWarpCommand;
 import org.ammonium.smple.command.warps.warp.WarpCommand;
-import org.ammonium.smple.command.workbench.*;
-import org.ammonium.smple.command.moderation.BanCommand;
-import org.ammonium.smple.command.moderation.KickCommand;
-import org.ammonium.smple.command.moderation.MuteCommand;
+import org.ammonium.smple.command.workbench.AnvilCommand;
+import org.ammonium.smple.command.workbench.CartographyCommand;
+import org.ammonium.smple.command.workbench.CraftCommand;
+import org.ammonium.smple.command.workbench.EChestComand;
+import org.ammonium.smple.command.workbench.GrindCommand;
+import org.ammonium.smple.command.workbench.LoomCommand;
+import org.ammonium.smple.command.workbench.SmithCommand;
+import org.ammonium.smple.command.workbench.StonecutterCommand;
 import org.ammonium.smple.config.Config;
 import org.ammonium.smple.listener.PunishmentListener;
 import org.ammonium.smple.sdk.api.service.impl.PunishmentService;
@@ -60,15 +67,15 @@ public final class SmplePlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        
+
         // final ETableCommand eTableCommand = new ETableCommand(this);
-        
+
 //        this.getServer().getPluginManager()
 //            .registerEvents(
 //                this
 //            );
-        
-        this.configManager.initConfigs(this, Config.class);
+
+        this.configManager.initConfigs(Config.class);
 
         getServer().getPluginManager().registerEvents(new PunishmentListener(punishmentService), this);
 
