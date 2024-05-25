@@ -12,7 +12,7 @@ import org.ammonium.smple.command.misc.CmdHistoryCommand;
 import org.ammonium.smple.command.misc.DoasCommand;
 import org.ammonium.smple.command.ExampleCommand;
 import org.ammonium.smple.command.misc.SudoCommand;
-import org.ammonium.smple.command.workbench.AnvilCommand;
+import org.ammonium.smple.command.workbench.*;
 import org.ammonium.smple.sdk.command.CommandManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -35,7 +35,16 @@ public final class SmplePlugin extends JavaPlugin {
                 new ExampleCommand(),
                 new SudoCommand(this),
                 new DoasCommand(this),
-                new AnvilCommand(this)
+                new AnvilCommand(this),
+                new CartographyCommand(this),
+                new CraftCommand(this),
+                new EChestComand(this),
+                new ETableCommand(this),
+                new GrindCommand(this),
+                new LoomCommand(this),
+                new SmeltCommand(this),
+                new SmithCommand(this),
+                new StonecutterCommand(this)
             );
 
 
