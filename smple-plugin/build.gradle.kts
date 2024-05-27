@@ -3,6 +3,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     id("jvm-conventions")
     id("net.minecrell.plugin-yml.bukkit") version "0.5.3"
+    id("io.freefair.lombok") version "8.6"
 }
 
 dependencies {
