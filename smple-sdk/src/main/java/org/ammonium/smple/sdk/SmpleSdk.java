@@ -9,6 +9,8 @@ import org.ammonium.smple.sdk.api.service.impl.WarpService;
 
 public final class SmpleSdk {
 
+    private static final String ENDPOINT = "https://api.smpleproject.org";
+
     private static SmpleSdk instance;
     private final UserService userService = new UserService();
     private final HomeService homeService = new HomeService();
