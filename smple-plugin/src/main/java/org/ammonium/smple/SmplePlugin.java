@@ -8,6 +8,8 @@ import org.ammonium.smple.sdk.command.CommandManager;
 import org.ammonium.smple.sdk.config.ConfigManager;
 import org.ammonium.smple.sdk.plugin.PluginBootstrapper;
 
+import static java.util.Arrays.binarySearch;
+
 public final class SmplePlugin extends PluginBootstrapper {
 
     @Override
@@ -26,6 +28,7 @@ public final class SmplePlugin extends PluginBootstrapper {
 
         CommandManager.create(this)
             .withCommands("org.ammonium.smple.command", this, getSdk());
+
     }
 
     @Override

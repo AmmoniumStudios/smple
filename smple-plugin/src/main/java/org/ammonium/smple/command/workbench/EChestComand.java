@@ -18,11 +18,9 @@ public class EChestComand {
     @Command("echest")
     @Permission("smple.workbench.echest")
     @CommandDescription("Open an echest")
-    public void openEChest(
-        final Player player
-    ) {
-        Bukkit.getScheduler().runTask(plugin, () -> {
-            player.openInventory(player.getEnderChest());
-        });
+    public void openEChest(final Player player) {
+        Bukkit.getScheduler().runTask(plugin, () ->
+            player.openInventory(player.getEnderChest())
+        );
     }
 }

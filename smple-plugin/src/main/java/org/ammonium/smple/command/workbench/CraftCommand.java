@@ -18,11 +18,9 @@ public class CraftCommand {
     @Command("craft")
     @Permission("smple.workbench.craft")
     @CommandDescription("Open a crafting table")
-    public void openCrafting(
-        final Player player
-    ) {
-        Bukkit.getScheduler().runTask(plugin, () -> {
-            player.openWorkbench(player.getLocation(), true);
-        });
+    public void openCrafting(final Player player) {
+        Bukkit.getScheduler().runTask(plugin, () ->
+            player.openWorkbench(player.getLocation(), true)
+        );
     }
 }

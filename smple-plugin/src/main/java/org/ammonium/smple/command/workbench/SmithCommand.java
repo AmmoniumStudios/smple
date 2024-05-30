@@ -18,11 +18,9 @@ public class SmithCommand {
     @Command("smith")
     @Permission("smple.workbench.smith")
     @CommandDescription("Open a smithing table")
-    public void openSmithingTable(
-        final Player player
-    ) {
-        Bukkit.getScheduler().runTask(plugin, () -> {
-            player.openSmithingTable(player.getLocation(), true);
-        });
+    public void openSmithingTable(final Player player) {
+        Bukkit.getScheduler().runTask(plugin, () ->
+            player.openSmithingTable(player.getLocation(), true)
+        );
     }
 }

@@ -21,9 +21,9 @@ public class LoomCommand {
     public void openLoom(
         final Player player
     ) {
-        Bukkit.getScheduler().runTask(plugin, () -> {
-            player.openLoom(player.getLocation(), true);
-        });
+        Bukkit.getScheduler().runTask(plugin, () ->
+            player.openLoom(player.getLocation(), true)
+        );
     }
 
 }

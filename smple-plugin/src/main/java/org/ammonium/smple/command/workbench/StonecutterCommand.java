@@ -21,8 +21,8 @@ public class StonecutterCommand {
     public void openStonecutter(
         final Player player
     ) {
-        Bukkit.getScheduler().runTask(plugin, () -> {
-            player.openStonecutter(player.getLocation(), true);
-        });
+        Bukkit.getScheduler().runTask(plugin, () ->
+            player.openStonecutter(player.getLocation(), true)
+        );
     }
 }

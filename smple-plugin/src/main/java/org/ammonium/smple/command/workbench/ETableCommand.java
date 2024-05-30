@@ -22,9 +22,7 @@ public class ETableCommand implements Listener {
     @Command("etable")
     @Permission("smple.workbench.etable")
     @CommandDescription("Open an etable")
-    public void openETable(
-        final Player player
-    ) {
+    public void openETable(final Player player) {
         Bukkit.getScheduler().runTask(plugin, () -> {
             // TODO: check what level this is, it needs to be a max level etable
             player.openEnchanting(player.getLocation(), true);

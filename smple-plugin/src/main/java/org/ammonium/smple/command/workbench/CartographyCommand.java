@@ -18,12 +18,10 @@ public class CartographyCommand {
     @Command("cartography")
     @Permission("smple.workbench.cartography")
     @CommandDescription("Open a cartography table")
-    public void openCartography(
-        final Player player
-    ) {
-        Bukkit.getScheduler().runTask(plugin, () -> {
-            player.openCartographyTable(player.getLocation(), true);
-        });
+    public void openCartography(final Player player) {
+        Bukkit.getScheduler().runTask(plugin, () ->
+            player.openCartographyTable(player.getLocation(), true)
+        );
     }
 
 }

@@ -7,6 +7,7 @@ import org.ammonium.smple.sdk.SmpleSdk;
 import org.ammonium.smple.sdk.config.serializer.DurationSerializer;
 import org.ammonium.smple.sdk.plugin.PluginBootstrapper;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 
@@ -33,7 +34,7 @@ public class PunishmentListener implements Listener {
         });
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onChat(final AsyncChatEvent event) {
         final Messages messages = Messages.get();
         this.sdk.getPunishmentService().isMuted(event.getPlayer().getUniqueId()).thenAccept(mute -> {

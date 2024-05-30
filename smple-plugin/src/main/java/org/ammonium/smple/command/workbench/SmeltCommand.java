@@ -1,7 +1,9 @@
 package org.ammonium.smple.command.workbench;
 
 import java.util.Iterator;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.ammonium.smple.SmplePlugin;
+import org.ammonium.smple.config.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.FurnaceRecipe;
@@ -22,9 +24,7 @@ public class SmeltCommand {
     @Command("smelt")
     @Permission("smple.workbench.smith")
     @CommandDescription("Open a smithing table")
-    public void smeltHand(
-        final Player player
-    ) {
+    public void smeltHand(final Player player) {
         final ItemStack item = player.getInventory().getItemInMainHand();
         ItemStack result;
 
@@ -36,6 +36,10 @@ public class SmeltCommand {
                     result.setAmount(item.getAmount());
 
                     player.getInventory().setItemInMainHand(result);
+                    Messages.get().getSmeltSuccessful().send(player,
+                        Placeholder.parsed("item", result.getType().name()),
+                        Placeholder.parsed("amount", String.valueOf(result.getAmount()))
+                    );
                     break;
                 }
             }

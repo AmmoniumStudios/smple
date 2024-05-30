@@ -23,6 +23,11 @@ public final class Messages {
         "<red>You are muted for <reason>. Expires in: <duration> "
     );
 
+    @Setting
+    private final FancyMessage smeltSuccessful = new FancyMessage(
+        prefix + "<green>Successfully smelted <item> x<amount>!"
+    );
+
     public static Messages get() {
         return ConfigManager.getInstance().getConfig(Messages.class);
     }

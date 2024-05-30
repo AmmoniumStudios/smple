@@ -18,12 +18,10 @@ public class AnvilCommand {
     @Command("anvil")
     @Permission("smple.workbench.anvil")
     @CommandDescription("Open an anvil")
-    public void openAnvil(
-        final Player player
-    ) {
-        Bukkit.getScheduler().runTask(plugin, () -> {
-            player.openAnvil(player.getLocation(), true);
-        });
+    public void openAnvil(final Player player) {
+        Bukkit.getScheduler().runTask(plugin, () ->
+            player.openAnvil(player.getLocation(), true)
+        );
     }
 
 }

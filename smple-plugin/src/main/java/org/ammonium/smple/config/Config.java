@@ -14,7 +14,7 @@ public final class Config {
     private final String example = "Hello, World!";
 
     private final FancyMessage chatFormat =
-        new FancyMessage("<displayname> <gray>» <reset><message>");
+        new FancyMessage("<display_name> <gray>» <reset><message>");
 
     public static Config get() {
         return ConfigManager.getInstance().getConfig(Config.class);

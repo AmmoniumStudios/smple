@@ -18,9 +18,7 @@ public class GrindCommand {
     @Command("grind")
     @Permission("smple.workbench.grind")
     @CommandDescription("Open a grindstone")
-    public void openGrindstone(
-        final Player player
-    ) {
+    public void openGrindstone(final Player player) {
         Bukkit.getScheduler().runTask(plugin, () -> {
             player.openGrindstone(player.getLocation(), true);
         });
