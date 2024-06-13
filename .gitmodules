@@ -1,3 +1,6 @@
 [submodule "smple-api"]
 	path = smple-api
 	url = https://github.com/AmmoniumStudios/smple-api.git
+[submodule "smple-api-solo"]
+	path = smple-api-solo
+	url = https://github.com/AmmoniumStudios/smple-api-solo.git
