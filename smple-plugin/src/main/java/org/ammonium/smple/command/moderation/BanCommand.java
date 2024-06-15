@@ -1,11 +1,8 @@
 package org.ammonium.smple.command.moderation;
 
-import java.time.Duration;
-import java.util.UUID;
 import org.ammonium.smple.SmplePlugin;
 import org.ammonium.smple.sdk.SmpleSdk;
 import org.ammonium.smple.sdk.api.service.impl.PunishmentService;
-import org.ammonium.smple.sdk.plugin.PluginBootstrapper;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -14,6 +11,9 @@ import org.incendo.cloud.annotations.Argument;
 import org.incendo.cloud.annotations.Command;
 import org.incendo.cloud.annotations.Default;
 import org.incendo.cloud.annotations.Permission;
+
+import java.time.Duration;
+import java.util.UUID;
 
 public class BanCommand {
 
@@ -36,25 +36,30 @@ public class BanCommand {
             ? ((Player) sender).getUniqueId()
             : PunishmentService.CONSOLE_ID;
 
-        final OfflinePlayer player = Bukkit.getOfflinePlayerIfCached(target);
-        if (player == null) {
+        Player targetPlayer;
+
+        if (Bukkit.getPlayer(target) != null) {
+            targetPlayer = Bukkit.getPlayer(target);
+        } else {
+            targetPlayer = Bukkit.getOfflinePlayer(target).getPlayer();
+        }
+
+        if (targetPlayer == null) {
             sender.sendMessage("Player not found.");
             return;
         }
 
         this.sdk.getPunishmentService()
-            .ban(player.getUniqueId(), senderId, reason, duration)
-            .thenAccept(success -> {
-                if (success) {
-                    if (!silent) {
-                        // Broadcast ban message to server
-                    } else {
-                        // Send ban message to sender
-                        sender.sendMessage("Player banned.");
-                    }
-                    if (player.isOnline()) {
-                        // Kick player
-                    }
+            .ban(targetPlayer.getUniqueId(), senderId, reason, duration)
+            .thenAccept(a -> {
+                if (targetPlayer.isOnline()) {
+                    targetPlayer.kick();
+                }
+
+                if (!silent) {
+                    // Broadcast ban message to server
+                } else {
+                    // Send message to all online staff
                 }
             });
     }
@@ -81,7 +86,6 @@ public class BanCommand {
             .thenAccept(success -> {
                 if (success) {
                     // Broadcast unban message to server
-                    // Unban player
                 } else {
                     sender.sendMessage("Player is not banned.");
                 }
