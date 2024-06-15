@@ -29,4 +29,9 @@ public interface Service<ID, T> {
     default CompletableFuture<Void> delete(ID id) {
         return CompletableFuture.completedFuture(null);
     }
+
+    default CompletableFuture<Void> deleteAll() {
+        return CompletableFuture.completedFuture(null);
+    }
+
 }
