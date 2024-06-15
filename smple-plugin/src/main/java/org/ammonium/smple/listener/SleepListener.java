@@ -1,7 +1,8 @@
 package org.ammonium.smple.listener;
 
 import org.ammonium.smple.SmplePlugin;
-import org.ammonium.smple.config.Sleep;
+import org.ammonium.smple.config.Config;
+import org.ammonium.smple.config.Config.Sleep;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,7 +18,7 @@ public class SleepListener implements Listener {
     @EventHandler
     public void onPlayerSleep(final PlayerBedEnterEvent event) {
         
-        final Sleep sleepConfig = Sleep.get();
+        final Sleep sleepConfig = Config.get().getSleep();
         
         final int minPlayersSleeping = sleepConfig.getMinPlayersSleeping();
         final int nightSkipDelay = sleepConfig.getNightSkipDelay();

@@ -15,6 +15,24 @@ public final class Config {
 
     private final FancyMessage chatFormat =
         new FancyMessage("<display_name> <gray>» <reset><message>");
+    
+    
+    @Setting
+    private final Sleep sleep = new Sleep();
+    
+    @ConfigSerializable
+    @Getter
+    public static final class Sleep {
+        
+        @Setting
+        private final int minPlayersSleeping = 1;
+        
+        @Setting
+        private final int nightSkipDelay = 5;
+        
+        public static Sleep get() { return ConfigManager.getInstance().getConfig(Sleep.class); }
+    }
+    
 
     public static Config get() {
         return ConfigManager.getInstance().getConfig(Config.class);
