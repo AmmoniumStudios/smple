@@ -15,6 +15,9 @@ public final class Config {
     private final Credentials credentials = new Credentials();
 
     @Setting
+    private final Sleep sleep = new Sleep();
+  
+    @Setting
     private final Chat chat = new Chat();
 
     @ConfigSerializable
@@ -26,6 +29,19 @@ public final class Config {
             "<display_name> <gray>» <reset><message>"
         );
 
+    }
+    
+    @ConfigSerializable
+    @Getter
+    public static final class Sleep {
+        
+        @Setting
+        private final int minPlayersSleeping = 1;
+        
+        @Setting
+        private final int nightSkipDelay = 5;
+        
+        public static Sleep get() { return ConfigManager.getInstance().getConfig(Sleep.class); }
     }
 
     public static Config get() {
