@@ -22,6 +22,10 @@ public final class SmpleSdk {
     private final HomeService homeService = new HomeService(storageFactory);
     private final PunishmentService punishmentService = new PunishmentService(storageFactory);
 
+    public SqlStorageFactory getStorageFactory() {
+        return storageFactory;
+    }
+
     public UserService getUserService() {
         return userService;
     }

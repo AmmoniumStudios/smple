@@ -23,6 +23,50 @@ public final class PunishmentService implements Service<UUID, Punishment> {
 
     public PunishmentService(SqlStorageFactory storageFactory) {
         this.storageFactory = storageFactory;
+
+        this.storageFactory.addTable(
+            """
+            CREATE TABLE IF NOT EXISTS bans (
+                uuid VARCHAR(36) PRIMARY KEY,
+                actor VARCHAR(36) NOT NULL,
+                reason TEXT NOT NULL,
+                duration BIGINT NOT NULL,
+                active BOOLEAN NOT NULL
+            );
+            """
+        );
+
+        this.storageFactory.addTable(
+            """
+            CREATE TABLE IF NOT EXISTS kicks (
+                uuid VARCHAR(36) PRIMARY KEY,
+                actor VARCHAR(36) NOT NULL,
+                reason TEXT NOT NULL
+            );
+            """
+        );
+
+        this.storageFactory.addTable(
+            """
+            CREATE TABLE IF NOT EXISTS mutes (
+                uuid VARCHAR(36) PRIMARY KEY,
+                actor VARCHAR(36) NOT NULL,
+                reason TEXT NOT NULL,
+                duration BIGINT NOT NULL,
+                active BOOLEAN NOT NULL
+            );
+            """
+        );
+
+        this.storageFactory.addTable(
+            """
+            CREATE TABLE IF NOT EXISTS warns (
+                uuid VARCHAR(36) PRIMARY KEY,
+                actor VARCHAR(36) NOT NULL,
+                reason TEXT NOT NULL
+            );
+            """
+        );
     }
 
     public CompletableFuture<List<Punishment>> getHistory(final UUID uniqueId) {
@@ -114,7 +158,7 @@ public final class PunishmentService implements Service<UUID, Punishment> {
         return supplyAsync(() -> {
             try (
                 Connection connection = this.storageFactory.getConnection();
-                PreparedStatement statement = connection.prepareStatement("UPDATE bans SET active = 0 WHERE uuid = ? AND active = 1")
+                PreparedStatement statement = connection.prepareStatement("UPDATE bans SET active = false WHERE uuid = ? AND active = true")
             ) {
                 statement.setString(1, uniqueId.toString());
                 statement.executeUpdate();
@@ -130,7 +174,7 @@ public final class PunishmentService implements Service<UUID, Punishment> {
         return supplyAsync(() -> {
             try (
                 Connection connection = this.storageFactory.getConnection();
-                PreparedStatement statement = connection.prepareStatement("UPDATE mutes SET active = 0 WHERE uuid = ? AND active = 1")
+                PreparedStatement statement = connection.prepareStatement("UPDATE mutes SET active = false WHERE uuid = ? AND active = true")
             ) {
                 statement.setString(1, uniqueId.toString());
                 statement.executeUpdate();
@@ -166,7 +210,7 @@ public final class PunishmentService implements Service<UUID, Punishment> {
         return supplyAsync(() -> {
             try (
                 Connection connection = this.storageFactory.getConnection();
-                PreparedStatement statement = connection.prepareStatement("SELECT * FROM bans WHERE uuid = ? AND active = 1 LIMIT 1")
+                PreparedStatement statement = connection.prepareStatement("SELECT * FROM bans WHERE uuid = ? AND active = true LIMIT 1")
             ) {
                 statement.setString(1, uniqueId.toString());
 
@@ -191,7 +235,7 @@ public final class PunishmentService implements Service<UUID, Punishment> {
         return supplyAsync(() -> {
             try (
                 Connection connection = this.storageFactory.getConnection();
-                PreparedStatement statement = connection.prepareStatement("SELECT * FROM mutes WHERE uuid = ? AND active = 1 LIMIT 1")
+                PreparedStatement statement = connection.prepareStatement("SELECT * FROM mutes WHERE uuid = ? AND active = true LIMIT 1")
             ) {
                 statement.setString(1, uniqueId.toString());
 

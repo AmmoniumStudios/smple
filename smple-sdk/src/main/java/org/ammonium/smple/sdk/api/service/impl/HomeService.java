@@ -23,6 +23,18 @@ public class HomeService implements Service<UUID, Home> {
 
     public HomeService(SqlStorageFactory storageFactory) {
         this.storageFactory = storageFactory;
+
+        this.storageFactory.addTable(
+            """
+                CREATE TABLE IF NOT EXISTS homes (
+                    uuid VARCHAR(36) NOT NULL,
+                    name VARCHAR(255) NOT NULL,
+                    x INT NOT NULL,
+                    y INT NOT NULL,
+                    z INT NOT NULL
+                );
+                """
+        );
     }
 
     @Override

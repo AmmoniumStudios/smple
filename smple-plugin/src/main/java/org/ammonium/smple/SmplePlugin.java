@@ -3,6 +3,7 @@ package org.ammonium.smple;
 import org.ammonium.smple.config.Config;
 import org.ammonium.smple.config.Messages;
 import org.ammonium.smple.listener.ChatListener;
+import org.ammonium.smple.listener.PlayerListener;
 import org.ammonium.smple.listener.PunishmentListener;
 import org.ammonium.smple.sdk.command.CommandManager;
 import org.ammonium.smple.sdk.config.ConfigManager;
@@ -17,13 +18,15 @@ public final class SmplePlugin extends PluginBootstrapper {
         ConfigManager.getInstance().initConfigs(
             Config.class, Messages.class
         );
+        getSdk().getStorageFactory().setup(Config.get().getCredentials());
     }
 
     @Override
     public void enable() {
         setupListeners(
             new PunishmentListener(this),
-            new ChatListener()
+            new ChatListener(),
+            new PlayerListener(this)
         );
 
         CommandManager.create(this)

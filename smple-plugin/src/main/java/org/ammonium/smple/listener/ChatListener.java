@@ -25,7 +25,7 @@ public final class ChatListener implements Listener, ChatRenderer {
         @NotNull Component message,
         @NotNull Audience audience
     ) {
-        return Config.get().getChatFormat().asComponent(
+        return Config.get().getChat().getFormat().asComponent(
             Placeholder.component("display_name", sourceDisplayName),
             Placeholder.component("message", message)
         );

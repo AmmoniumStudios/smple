@@ -1,10 +1,12 @@
 package org.ammonium.smple.sdk.plugin;
 
+import lombok.Getter;
 import org.ammonium.smple.sdk.SmpleSdk;
 import org.ammonium.smple.sdk.config.ConfigManager;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+@Getter
 public abstract class PluginBootstrapper extends JavaPlugin {
 
     private SmpleSdk smpleSdk;
@@ -25,6 +27,8 @@ public abstract class PluginBootstrapper extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        smpleSdk.getStorageFactory().close();
+
         disable();
     }
 
@@ -42,9 +46,5 @@ public abstract class PluginBootstrapper extends JavaPlugin {
 
     public SmpleSdk getSdk() {
         return smpleSdk;
-    }
-
-    public ConfigManager getConfigManager() {
-        return configManager;
     }
 }

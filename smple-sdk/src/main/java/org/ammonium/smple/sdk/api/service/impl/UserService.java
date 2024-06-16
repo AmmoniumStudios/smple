@@ -1,5 +1,9 @@
 package org.ammonium.smple.sdk.api.service.impl;
 
+import org.ammonium.smple.sdk.api.model.User;
+import org.ammonium.smple.sdk.api.service.Service;
+import org.ammonium.smple.sdk.storage.sql.SqlStorageFactory;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,10 +13,6 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.ammonium.smple.sdk.api.model.User;
-import org.ammonium.smple.sdk.api.service.Service;
-import org.ammonium.smple.sdk.storage.sql.SqlStorageFactory;
-
 public final class UserService implements Service<UUID, User> {
 
     private final Map<UUID, User> cache = new ConcurrentHashMap<>();
@@ -20,6 +20,16 @@ public final class UserService implements Service<UUID, User> {
 
     public UserService(SqlStorageFactory storageFactory) {
         this.storageFactory = storageFactory;
+
+        this.storageFactory.addTable(
+            """
+                CREATE TABLE IF NOT EXISTS users (
+                    uuid VARCHAR(36) PRIMARY KEY,
+                    name VARCHAR(255) NOT NULL,
+                    displayName VARCHAR(255) NOT NULL
+                );
+                """
+        );
     }
 
 
@@ -70,6 +80,15 @@ public final class UserService implements Service<UUID, User> {
                 }
             }
             return user;
+        });
+    }
+
+    public CompletableFuture<User> loadUser(UUID uniqueId, String username) {
+        return get(uniqueId).thenCompose(user -> {
+            if (user == null) {
+                return create(new User(uniqueId, username, username)).thenApply(v -> new User(uniqueId, username, username));
+            }
+            return CompletableFuture.completedFuture(user);
         });
     }
 
