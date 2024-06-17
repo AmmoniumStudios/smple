@@ -2,6 +2,7 @@ package org.ammonium.smple.sdk.plugin;
 
 import lombok.Getter;
 import org.ammonium.smple.sdk.SmpleSdk;
+import org.ammonium.smple.sdk.api.service.impl.WarpService;
 import org.ammonium.smple.sdk.config.ConfigManager;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,10 +13,13 @@ public abstract class PluginBootstrapper extends JavaPlugin {
     private SmpleSdk smpleSdk;
     private ConfigManager configManager;
 
+    private WarpService warpService;
+
     @Override
     public void onLoad() {
         this.smpleSdk = SmpleSdk.get();
         this.configManager = new ConfigManager(this);
+        this.warpService = new WarpService(this);
 
         load();
     }
