@@ -66,7 +66,7 @@ public final class PunishmentService implements Service<UUID, Punishment> {
             CREATE TABLE IF NOT EXISTS warns (
                 uuid VARCHAR(36) PRIMARY KEY,
                 actor VARCHAR(36) NOT NULL,
-                reason TEXT NOT NULL
+                reason TEXT NOT NULL,
                 timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
             """
