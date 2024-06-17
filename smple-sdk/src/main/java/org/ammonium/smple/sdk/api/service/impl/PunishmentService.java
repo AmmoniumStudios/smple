@@ -31,6 +31,7 @@ public final class PunishmentService implements Service<UUID, Punishment> {
                 actor VARCHAR(36) NOT NULL,
                 reason TEXT NOT NULL,
                 duration BIGINT NOT NULL,
+                timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 active BOOLEAN NOT NULL
             );
             """
@@ -41,7 +42,8 @@ public final class PunishmentService implements Service<UUID, Punishment> {
             CREATE TABLE IF NOT EXISTS kicks (
                 uuid VARCHAR(36) PRIMARY KEY,
                 actor VARCHAR(36) NOT NULL,
-                reason TEXT NOT NULL
+                reason TEXT NOT NULL,
+                timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
             """
         );
@@ -53,6 +55,7 @@ public final class PunishmentService implements Service<UUID, Punishment> {
                 actor VARCHAR(36) NOT NULL,
                 reason TEXT NOT NULL,
                 duration BIGINT NOT NULL,
+                timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 active BOOLEAN NOT NULL
             );
             """
@@ -64,6 +67,7 @@ public final class PunishmentService implements Service<UUID, Punishment> {
                 uuid VARCHAR(36) PRIMARY KEY,
                 actor VARCHAR(36) NOT NULL,
                 reason TEXT NOT NULL
+                timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
             """
         );
@@ -219,7 +223,8 @@ public final class PunishmentService implements Service<UUID, Punishment> {
                         return new Ban(
                             Duration.ofMillis(resultSet.getLong("duration")),
                             UUID.fromString(resultSet.getString("uuid")),
-                            resultSet.getString("reason")
+                            resultSet.getString("reason"),
+                            resultSet.getTimestamp("timestamp").toInstant()
                         );
                     }
                 }
@@ -244,7 +249,8 @@ public final class PunishmentService implements Service<UUID, Punishment> {
                         return new Mute(
                             Duration.ofMillis(resultSet.getLong("duration")),
                             UUID.fromString(resultSet.getString("uuid")),
-                            resultSet.getString("reason")
+                            resultSet.getString("reason"),
+                            resultSet.getTimestamp("timestamp").toInstant()
                         );
                     }
                 }
