@@ -22,10 +22,9 @@ public class DelHomeCommand {
         final Player player,
         @Argument("home") final String home
     ) {
-        // check if home exists
-        // if home exists
-        // delete home
-
+        // get all homes of player
+        // if home exists, delete it
+        
         player.sendMessage("Home %s deleted".formatted(home));
     }
 }

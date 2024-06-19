@@ -399,3 +399,21 @@ Punishments are set in the config.
 List allows a user to see all the punishments of a user
 Remove allows a user to remove a punishment of a user
 Clear allows a user to clear all the punishments of a user
+
+
+## TODO:
+
+This TODO list is only for our personal mc server, this shouldnt be used as ref for the plugin
+
+- [x] Faster Leaf Decay (waiting on vt)
+- [x] Multiplayer Sleep
+- [x] Nether Portal of any size (waiting on vt)
+- [x] Disable Phantoms (config)
+- [x] Silence Mobs (waiting on vt)
+- [x] Craftable horse shit (vt)
+- [x] Craftable EGapples (vt)
+- [x] Workstation Highlights (waiting on vt)
+- [x] Player Heads (waiting on vt) 
+- [ ] Waypoints
+- [x] Difficulty (set in cfg)
+- [x] ridable dolphins (purpur)

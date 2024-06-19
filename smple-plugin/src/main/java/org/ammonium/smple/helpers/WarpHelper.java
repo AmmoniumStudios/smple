@@ -1,6 +1,7 @@
 package org.ammonium.smple.helpers;
 
 import org.ammonium.smple.SmplePlugin;
+import org.ammonium.smple.config.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -33,14 +34,14 @@ public class WarpHelper {
 
         // if user does not have the bypass permission, teleport after delay
         if (!player.hasPermission("smple.warps.nodelay")) {
-            int delay = 5; // get delay from config
+    
+            final int delay = Config.Warps.get().getWarpDelay();
 
             player.sendMessage("Teleporting in %d seconds".formatted(delay));
-
+            
             Bukkit.getScheduler().runTaskLater(plugin, () -> {
                 player.teleportAsync(location);
-
-            }, delay * 20);
+            }, delay * 20L);
         } else {
             player.sendMessage("Teleporting");
             player.teleportAsync(location);

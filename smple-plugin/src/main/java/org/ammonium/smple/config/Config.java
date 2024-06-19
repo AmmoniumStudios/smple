@@ -14,8 +14,9 @@ public final class Config {
     @Setting
     private final Credentials credentials = new Credentials();
 
-    @Setting
-    private final Sleep sleep = new Sleep();
+    private final FancyMessage chatFormat =
+        new FancyMessage("<display_name> <gray>» <reset><message>");
+    
   
     @Setting
     private final Chat chat = new Chat();
@@ -43,6 +44,40 @@ public final class Config {
         
         public static Sleep get() { return ConfigManager.getInstance().getConfig(Sleep.class); }
     }
+    
+    @Setting
+    private final Sleep sleep = new Sleep();
+    
+    
+    @ConfigSerializable
+    @Getter
+    public static final class Warps {
+        
+        @Setting
+        private final int rtpRadius = 1000;
+        
+        @Setting
+        private final int warpDelay = 5;
+        
+        @Setting
+        private final int warpCooldown = 5;
+        
+        @Setting
+        private final int tpRequestTimeout = 30;
+        
+        @Setting
+        private final int maxHomes = 3;
+        
+        @Setting
+        private final int maxPWarps = 3;
+        
+        
+        public static Warps get() { return ConfigManager.getInstance().getConfig(Warps.class); }
+    }
+    
+    @Setting
+    private final Warps warps = new Warps();
+    
 
     public static Config get() {
         return ConfigManager.getInstance().getConfig(Config.class);

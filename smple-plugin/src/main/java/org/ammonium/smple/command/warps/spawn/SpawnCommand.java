@@ -24,11 +24,9 @@ public class SpawnCommand {
     ) {
 
         World world = player.getWorld();
-
-        if (world != null) {
-            WarpHelper.teleport(this.plugin, player,
-                world.getSpawnLocation()
-            );
-        }
+        
+        WarpHelper.teleport(this.plugin, player,
+            world.getSpawnLocation()
+        );
     }
 }
