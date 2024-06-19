@@ -28,6 +28,26 @@ public final class Messages {
         prefix + "<green>Successfully smelted <item> x<amount>!"
     );
 
+    @Setting
+    private final Warp warp = new Warp();
+
+    @ConfigSerializable
+    @Getter
+    public static class Warp {
+
+        @Setting
+        private final FancyMessage warpSet = new FancyMessage("<green>Warp <name> has been set!");
+
+        @Setting
+        private final FancyMessage warpRemoved = new FancyMessage("<green>Warp <name> has been removed!");
+
+        @Setting
+        private final FancyMessage warpNotFound = new FancyMessage("<red>Warp <name> not found!");
+
+        @Setting
+        private final FancyMessage warpTeleported = new FancyMessage("<green>Teleported to warp <name>!");
+    }
+
     public static Messages get() {
         return ConfigManager.getInstance().getConfig(Messages.class);
     }

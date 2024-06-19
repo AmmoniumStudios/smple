@@ -21,13 +21,6 @@ public class CmdHistoryCommand {
     @Permission("smple.cmdlogs")
     @CommandDescription("View the command history of a player")
     public void viewLogs(final CommandSender sender, @Argument("player") final Player player) {
-        this.sdk.getLogService().get(player.getUniqueId()).thenAccept(log -> {
-            if (log == null) {
-                sender.sendMessage("No command executed by " + player.getName());
-                return;
-            }
 
-            sender.sendMessage("Command executed by " + player.getName() + ": " + log.logMessage());
-        });
     }
 }

@@ -22,6 +22,7 @@ public class PunishmentListener implements Listener {
     @EventHandler
     public void onPlayerJoin(final AsyncPlayerPreLoginEvent event) {
         final Messages messages = Messages.get();
+        System.out.println(event.getUniqueId());
         this.sdk.getPunishmentService().isBanned(event.getUniqueId()).thenAccept(ban -> {
             if (ban != null) {
                 event.disallow(

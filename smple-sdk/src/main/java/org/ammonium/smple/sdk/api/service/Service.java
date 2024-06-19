@@ -1,6 +1,7 @@
 package org.ammonium.smple.sdk.api.service;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,21 +32,25 @@ public interface Service<ID, T> {
         return CompletableFuture.completedFuture(null);
     }
 
-    default <E> CompletableFuture<E> supplyAsync(final Supplier<E> runnable) {
+    default CompletableFuture<Void> deleteAll() {
+        return CompletableFuture.completedFuture(null);
+    }
+
+    default <E> CompletableFuture<E> supplyAsync(Supplier<E> supplier) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                return runnable.get();
-            } catch (final Exception e) {
+                return supplier.get();
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }, EXECUTOR);
     }
 
-    default CompletableFuture<Void> runAsync(final Runnable runnable) {
+    default CompletableFuture<Void> runAsync(Runnable runnable) {
         return CompletableFuture.runAsync(() -> {
             try {
                 runnable.run();
-            } catch (final Exception e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }, EXECUTOR);
