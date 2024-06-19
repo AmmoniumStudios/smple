@@ -1,6 +1,7 @@
 package org.ammonium.smple.command.warps;
 
 import org.ammonium.smple.SmplePlugin;
+import org.ammonium.smple.config.Config;
 import org.ammonium.smple.helpers.WarpHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -32,7 +33,7 @@ public class RTPCommand {
         // return "You are in combat"
 
 
-        final int radius = plugin.getConfig().getInt("rtp.radius");
+        final int radius = Config.Warps.get().getRtpRadius();
         final World world = Bukkit.getWorld("world");
 
         if (world == null) {
@@ -51,11 +52,6 @@ public class RTPCommand {
             Location loc = new Location(world, x, world.getHighestBlockYAt(x, z), z);
 
             if (loc.getBlock().isPassable()) {
-
-                // if player has permission "smple.warps.rtp.nodelay"
-                // teleport player instantly
-                // if not, teleport player after time specified in config
-
                 WarpHelper.teleport(this.plugin, player, loc);
                 safe = true;
             }
