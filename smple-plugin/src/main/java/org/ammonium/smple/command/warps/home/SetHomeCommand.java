@@ -23,10 +23,20 @@ public class SetHomeCommand {
         final Player player,
         @Argument("name") final String name
     ) {
+        final int maxHomes = 3; // TODO: get max homes from config
+        final int currentHomes = 0; // TODO: get current homes of player
+        
         final Location location = player.getLocation();
 
-        // set home
-
-        player.sendMessage("Home \"%s\" set".formatted(name));
+        if (currentHomes < maxHomes || player.hasPermission("smple.warps.home.unlimited")) {
+            
+            // check if home with name already exists
+            // if it does, cancel and send message to player (home already exists)
+            // else, create a new home
+            
+            player.sendMessage("Home \"%s\" set".formatted(name));
+        } else {
+            player.sendMessage("You have reached the maximum amount of homes");
+        }
     }
 }
