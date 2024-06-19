@@ -9,7 +9,7 @@ public class NicknameHelper {
 
     public static void setNickname(Player player, String nickname, Boolean silent) {
 
-        // set player nickname to nickname
+        // set player nickname in database
 
         if (!silent) player.sendMessage("Changed your nickname to %s".formatted(nickname));
         throw new UnsupportedOperationException("Not implemented yet");

@@ -59,6 +59,19 @@ public final class Config {
         @Setting
         private final int warpDelay = 5;
         
+        @Setting
+        private final int warpCooldown = 5;
+        
+        @Setting
+        private final int tpRequestTimeout = 30;
+        
+        @Setting
+        private final int maxHomes = 3;
+        
+        @Setting
+        private final int maxPWarps = 3;
+        
+        
         public static Warps get() { return ConfigManager.getInstance().getConfig(Warps.class); }
     }
     
