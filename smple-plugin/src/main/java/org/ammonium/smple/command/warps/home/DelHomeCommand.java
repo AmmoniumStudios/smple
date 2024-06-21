@@ -22,9 +22,15 @@ public class DelHomeCommand {
         final Player player,
         @Argument("home") final String home
     ) {
-        // get all homes of player
-        // if home exists, delete it
-        
-        player.sendMessage("Home %s deleted".formatted(home));
+        this.plugin.getSmpleSdk().getHomeService().getByName(player.getUniqueId(), home)
+            .thenAccept(h -> {
+                if (h == null) {
+                    player.sendMessage("Home %s does not exist".formatted(home));
+                    return;
+                } else {
+                    this.plugin.getSmpleSdk().getHomeService().delete(player.getUniqueId(), h);
+                    player.sendMessage("Home %s deleted".formatted(home));
+                }
+            });
     }
 }

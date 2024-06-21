@@ -28,7 +28,6 @@ public class WarpHelper {
         if (onCooldown && !player.hasPermission("smple.warps.nocooldown")) {
             int cooldown = 5; // TODO: get cooldown time from config
             player.sendMessage("You must wait %d seconds before teleporting again".formatted(cooldown));
-            ;
             return;
         }
 
@@ -40,11 +39,36 @@ public class WarpHelper {
             player.sendMessage("Teleporting in %d seconds".formatted(delay));
             
             Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                player.teleportAsync(location);
+                player.sendMessage("Teleporting");
+                
+                Location currentLocation = player.getLocation();
+                
+                Location target = new Location(
+                    location.getWorld(),
+                    location.getX(),
+                    location.getY(),
+                    location.getZ(),
+                    currentLocation.getYaw(),
+                    currentLocation.getPitch()
+                );
+                
+                player.teleportAsync(target);
             }, delay * 20L);
         } else {
             player.sendMessage("Teleporting");
-            player.teleportAsync(location);
+            
+            Location currentLocation = player.getLocation();
+            
+            Location target = new Location(
+                location.getWorld(),
+                location.getX(),
+                location.getY(),
+                location.getZ(),
+                currentLocation.getYaw(),
+                currentLocation.getPitch()
+            );
+            
+            player.teleportAsync(target);
         }
     }
 
