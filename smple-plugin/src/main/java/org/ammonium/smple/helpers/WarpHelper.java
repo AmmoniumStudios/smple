@@ -68,7 +68,9 @@ public class WarpHelper {
                 currentLocation.getPitch()
             );
             
-            player.teleportAsync(target);
+            player.teleportAsync(target).thenAccept(unused -> {
+                player.sendMessage("Teleported!");
+            });
         }
     }
 

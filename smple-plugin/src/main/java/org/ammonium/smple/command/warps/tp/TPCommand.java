@@ -44,7 +44,7 @@ public class TPCommand {
             // send teleport request to target
             // await response
 
-            player.sendMessage("Teleport request sent to " + target.getName());
+            player.sendMessage(plugin.getConfig().
             target.sendMessage(player.getName() + " has requested to teleport to you. Type /tpaccept to accept");
         }
     }
