@@ -1,7 +1,9 @@
 package org.ammonium.smple.command.warps.home;
 
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.ammonium.smple.SmplePlugin;
 import org.ammonium.smple.config.Config;
+import org.ammonium.smple.config.Messages;
 import org.ammonium.smple.sdk.api.model.Home;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -27,11 +29,13 @@ public class SetHomeCommand {
         final Player player,
         @Argument("name") final String name
     ) {
+        Messages messages = Messages.get();
+
         final int maxHomes = Config.Warps.get().getMaxHomes();
         final List<Home> currentHomes = this.plugin.getSmpleSdk().getHomeService()
             .getAll(player.getUniqueId())
             .join(); // blocking here should be fine? if not, refactor to async
-        
+
         final Location location = player.getLocation();
 
         if (currentHomes.size() < maxHomes || player.hasPermission("smple.warps.home.unlimited")) {
@@ -46,9 +50,9 @@ public class SetHomeCommand {
                 );
 
                 this.plugin.getSmpleSdk().getHomeService().create(home);
-                player.sendMessage("Home %s set".formatted(name));
+                messages.getHome().getHomeSet().send(player, Placeholder.parsed("name", name));
             } else {
-                player.sendMessage("Home %s already exists, please delete before setting".formatted(name));
+                messages.getHome().getHomeExists().send(player, Placeholder.parsed("name", name));
             }
         } else {
             player.sendMessage("You have reached the maximum amount of homes");

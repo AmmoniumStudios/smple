@@ -1,6 +1,7 @@
 package org.ammonium.smple.command.warps.home;
 
 import org.ammonium.smple.SmplePlugin;
+import org.ammonium.smple.config.Messages;
 import org.ammonium.smple.helpers.WarpHelper;
 import org.ammonium.smple.sdk.api.service.impl.HomeService;
 import org.bukkit.Location;
@@ -25,10 +26,12 @@ public class HomeCommand {
         final Player player,
         @Argument("name") final String name
     ) {
+        Messages messages = Messages.get();
+
         this.plugin.getSmpleSdk().getHomeService()
             .getByName(player.getUniqueId(), name)
             .thenAccept(home -> {
-                if (home == null) player.sendMessage("Home %s does not exist".formatted(name));
+                if (home == null) messages.getHome().getHomeNotFound().send(player);
                 else WarpHelper.teleport(this.plugin, player, home.toLocation());
             });
     }
