@@ -29,6 +29,7 @@ public class HomeService implements Service<UUID, Home> {
                 CREATE TABLE IF NOT EXISTS homes (
                     uuid VARCHAR(36) NOT NULL,
                     name VARCHAR(255) NOT NULL,
+                    world VARCHAR(255) NOT NULL,
                     x INT NOT NULL,
                     y INT NOT NULL,
                     z INT NOT NULL
@@ -42,13 +43,14 @@ public class HomeService implements Service<UUID, Home> {
         return runAsync(() -> {
             try (
                 Connection connection = this.storageFactory.getConnection();
-                PreparedStatement statement = connection.prepareStatement("INSERT INTO homes (uuid, name, x, y, z) VALUES (?, ?, ?, ?, ?, ?)")
+                PreparedStatement statement = connection.prepareStatement("INSERT INTO homes (uuid, name, world, x, y, z) VALUES (?, ?, ?, ?, ?, ?,?)")
             ) {
                 statement.setString(1, entity.ownerId().toString());
                 statement.setString(2, entity.name());
-                statement.setInt(3, entity.x());
-                statement.setInt(4, entity.y());
-                statement.setInt(5, entity.z());
+                statement.setString(3, entity.world());
+                statement.setInt(4, entity.x());
+                statement.setInt(5, entity.y());
+                statement.setInt(6, entity.z());
                 statement.executeUpdate();
 
                 cache.computeIfAbsent(entity.ownerId(), k -> new CopyOnWriteArrayList<>()).add(entity);
@@ -64,13 +66,14 @@ public class HomeService implements Service<UUID, Home> {
         return runAsync(() -> {
             try (
                 Connection connection = this.storageFactory.getConnection();
-                PreparedStatement statement = connection.prepareStatement("UPDATE homes SET x = ?, y = ?, z = ? WHERE uuid = ? AND name = ?")
+                PreparedStatement statement = connection.prepareStatement("UPDATE homes SET world = ?, x = ?, y = ?, z = ? WHERE uuid = ? AND name = ?")
             ) {
-                statement.setInt(1, entity.x());
-                statement.setInt(2, entity.y());
-                statement.setInt(3, entity.z());
-                statement.setString(4, entity.ownerId().toString());
-                statement.setString(5, entity.name());
+                statement.setString(1, entity.world());
+                statement.setInt(2, entity.x());
+                statement.setInt(3, entity.y());
+                statement.setInt(4, entity.z());
+                statement.setString(5, entity.ownerId().toString());
+                statement.setString(6, entity.name());
                 statement.executeUpdate();
 
                 // update cache
@@ -131,6 +134,7 @@ public class HomeService implements Service<UUID, Home> {
                         homes.add(new Home(
                             UUID.fromString(resultSet.getString("uuid")),
                             resultSet.getString("name"),
+                            resultSet.getString("world"),
                             resultSet.getInt("x"),
                             resultSet.getInt("y"),
                             resultSet.getInt("z")
